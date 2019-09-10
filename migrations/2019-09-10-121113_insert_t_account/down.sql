@@ -1,1 +1,1 @@
--- This file should undo anything in `up.sql`
+delete from T_ACCOUNT where name = 'whsi00';
