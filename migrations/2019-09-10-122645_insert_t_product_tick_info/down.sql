@@ -1,1 +1,1 @@
--- This file should undo anything in `up.sql`
+truncate table T_PRODUCT_TICK_INFO restart identity cascade;
