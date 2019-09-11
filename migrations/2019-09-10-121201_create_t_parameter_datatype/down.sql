@@ -1,1 +1,1 @@
-truncate table T_PARAMETER_DATATYPE restart identity;
+drop table T_PARAMETER_DATATYPE;
