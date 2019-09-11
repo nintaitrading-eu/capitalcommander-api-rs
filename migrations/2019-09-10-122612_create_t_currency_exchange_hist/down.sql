@@ -1,1 +1,1 @@
--- This file should undo anything in `up.sql`
+drop table T_CURRENCY_EXCHANGE_HIST;
