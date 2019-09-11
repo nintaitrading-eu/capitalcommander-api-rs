@@ -39,4 +39,4 @@ INSERT INTO T_MARKET(code, name, country, date_created)
             ('nasdaq', 'Nasdaq', 'US', (select now() at time zone 'UTC')),
             ('otc bb & pinksheets', 'OTC BB & pinksheets', 'US', (select now() at time zone 'UTC')),
             ('amex', 'American Exchange', 'US', (select now() at time zone 'UTC')),
-            ('other us', 'Other US markets', 'US', (select now() at time zone 'UTC'));"
+            ('other us', 'Other US markets', 'US', (select now() at time zone 'UTC'));
