@@ -1,1 +1,1 @@
-delete from T_ACCOUNT where name = 'whsi00';
+truncate table T_ACCOUNT restart identity;
