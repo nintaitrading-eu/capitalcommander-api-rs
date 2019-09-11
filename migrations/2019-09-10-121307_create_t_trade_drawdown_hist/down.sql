@@ -1,1 +1,1 @@
--- This file should undo anything in `up.sql`
+drop table T_TRADE_DRAWDOWN_HIST;
