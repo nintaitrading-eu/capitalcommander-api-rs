@@ -1,1 +1,1 @@
-truncate table T_ACCOUNT restart identity;
+truncate table T_ACCOUNT restart identity cascade;
