@@ -8,3 +8,5 @@ diesel = {version = "1.0.0", features = ["postgres"] }
 actix = "0.8.3"
 actix-web = "1.0"
 dotenv = "0.9.0"
+serde = "1.0.99"
+serde_derive = "1.0.99"
