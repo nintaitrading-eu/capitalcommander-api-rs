@@ -1,7 +1,8 @@
-use actix_web::{HttpResponse, Responder};
+use actix_web::{HttpRequest, HttpResponse};
 
-pub fn version() -> impl Responder
+use crate::models::versionmodel::VersionList;
+
+pub fn version(_req: HttpRequest) -> HttpResponse
 {
-
-    HttpResponse::Ok().json("Version info:")
+    HttpResponse::Ok().json(VersionList::list())
 }
