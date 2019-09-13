@@ -1,4 +1,4 @@
-/*table! {
+table! {
     t_account (account_id) {
         account_id -> Int8,
         name -> Varchar,
@@ -9,7 +9,7 @@
     }
 }
 
-table! {
+/*table! {
     t_account_hist (account_hist_id) {
         account_hist_id -> Int8,
         account_id -> Int8,
@@ -392,8 +392,7 @@ table! {
         date_hist_created -> Timestamptz,
         date_hist_modified -> Timestamptz,
     }
-}
-*/
+}*/
 
 table! {
     t_version (version_id) {
@@ -406,8 +405,8 @@ table! {
         date_modified -> Timestamptz,
     }
 }
-/*
-joinable!(t_account_hist -> t_account (account_id));
+
+/*joinable!(t_account_hist -> t_account (account_id));
 joinable!(t_currency_exchange_hist -> t_currency_exchange (currency_exchange_id));
 joinable!(t_market_hist -> t_market (market_id));
 joinable!(t_parameter_hist -> t_parameter (parameter_id));
@@ -447,5 +446,4 @@ allow_tables_to_appear_in_same_query!(
     t_trade_drawdown_hist,
     t_trade_hist,
     t_version,
-);
-*/
+);*/
