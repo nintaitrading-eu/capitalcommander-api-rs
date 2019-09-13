@@ -35,3 +35,25 @@ impl AccountList
         AccountList(result)
     }
 }
+
+#[derive(Insertable, Deserialize)]
+#[table_name="t_account"]
+pub struct AccountNew
+{
+    pub name: String,
+    pub description: String,
+}
+
+impl AccountNew
+{
+    pub fn create(&self) -> Result<Account, diesel::result::Error>
+    {
+        use diesel::RunQueryDsl;
+	use crate::connection::establish_connection;
+
+	let connection = establish_connection();
+	diesel::insert_into(t_account::table)
+	    .values(self)
+	    .get_result(&connection)
+    }
+}
