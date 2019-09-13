@@ -1,3 +1,3 @@
-pub mod account;
-pub mod status;
-pub mod version;
+pub mod accountcontroller;
+pub mod statuscontroller;
+pub mod versioncontroller;
