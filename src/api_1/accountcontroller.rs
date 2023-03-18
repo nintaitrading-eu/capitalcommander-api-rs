@@ -1,19 +1,24 @@
-use actix_web::{HttpRequest, HttpResponse, web};
+use actix_web::HttpResponse;
 
 use crate::models::accountmodel::AccountList;
 use crate::models::accountmodel::AccountNew;
 
-pub fn index(_req: HttpRequest) -> HttpResponse
+pub async fn get_account_list() -> HttpResponse
 {
     HttpResponse::Ok().json(AccountList::list())
 }
 
-pub fn create(new_product: web::Json<AccountNew>) -> Result<HttpResponse, HttpResponse>
+pub async fn get_account_by_id() -> HttpResponse
 {
-    new_product
-      .create()
-      .map(|account| HttpResponse::Ok().json(account))
-      .map_err(|e|  {
-        HttpResponse::InternalServerError().json(e.to_string())
-      })
+    HttpResponse::Ok().json("Not implemented yet...")
+}
+
+pub async fn add_account() -> HttpResponse
+{
+    HttpResponse::Ok().json("Not implemented yet...")
+}
+
+pub async fn delete_account() -> HttpResponse
+{
+    HttpResponse::Ok().json("Not implemented yet...")
 }

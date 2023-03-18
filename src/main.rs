@@ -12,32 +12,28 @@ extern crate serde_json;
 #[macro_use]
 extern crate serde_derive;
 
-extern crate actix;
 extern crate actix_web;
+extern crate actix_rt;
 extern crate futures;
 
 use actix_web::{web, App, HttpServer};
 
-
-fn main()
+#[actix_rt::main]
+async fn main() -> std::io::Result<()>
 {
-    let sys = actix::System::new("CapitalCommander");
+    std::env::set_var("RUST_LOG", "actix_web=debug");
 
     // Note: to_async not working... check later why
-    HttpServer::new(|| {
+    HttpServer::new(move || {
         App::new()
-            .service(web::resource("/status")
-                .route(web::get().to(api_1::statuscontroller::status)))
-            .service(web::resource("/version")
-                .route(web::get().to(api_1::versioncontroller::index)))
-            .service(web::resource("/account")
-                .route(web::get().to(api_1::accountcontroller::index))
-                .route(web::post().to(api_1::accountcontroller::create)))
+            .route("/status", web::get().to(api_1::statuscontroller::status))
+            .route("/version", web::get().to(api_1::versioncontroller::get_version))
+            .route("/account", web::get().to(api_1::accountcontroller::get_account_list))
+            .route("/account/{id}", web::get().to(api_1::accountcontroller::get_account_by_id))
+            .route("/account", web::post().to(api_1::accountcontroller::add_account))
+            .route("/account/{id}", web::delete().to(api_1::accountcontroller::delete_account))
     })
-    .bind("127.0.0.1:8891")
-    .unwrap()
-    .start();
-
-    println!("Started http server: 127.0.0.1:8891");
-    let _ = sys.run();
+    .bind("127.0.0.1:8891")?
+    .run()
+    .await
 }

@@ -1,6 +1,6 @@
-use actix_web::{HttpResponse, Responder};
+use actix_web::HttpResponse;
 
-pub fn status() -> impl Responder
+pub async fn status() -> HttpResponse
 {
     HttpResponse::Ok().json("Running...")
 }

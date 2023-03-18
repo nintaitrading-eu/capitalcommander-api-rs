@@ -1,8 +1,8 @@
-use actix_web::{HttpRequest, HttpResponse};
+use actix_web::HttpResponse;
 
 use crate::models::versionmodel::VersionList;
 
-pub fn index(_req: HttpRequest) -> HttpResponse
+pub async fn get_version() -> HttpResponse
 {
     HttpResponse::Ok().json(VersionList::list())
 }
