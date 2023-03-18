@@ -1,12 +1,16 @@
-use actix_web::HttpResponse;
+use actix_web::{web, HttpResponse, Error};
 
-use crate::models::accountmodel::AccountList;
-use crate::models::accountmodel::AccountNew;
+use crate::repositories::accountrepository;
+use crate::connection::Pool;
 
-pub async fn get_account_list() -> HttpResponse
+pub async fn get_account_list(db: web::Data<Pool>) -> Result<HttpResponse, Error>
 {
-    HttpResponse::Ok().json(AccountList::list())
+    Ok(web::block(move || accountrepository::get_account_list(db))
+       .await
+       .map(|account| HttpResponse::Ok().json(account))
+       .map_err(|_| HttpResponse::InternalServerError())?)
 }
+
 
 pub async fn get_account_by_id() -> HttpResponse
 {
