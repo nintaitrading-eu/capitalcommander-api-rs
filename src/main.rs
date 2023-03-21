@@ -1,5 +1,6 @@
 pub mod schema;
 pub mod connection;
+pub mod dto;
 pub mod models;
 pub mod repositories;
 pub mod api_1;

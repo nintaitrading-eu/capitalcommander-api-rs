@@ -15,10 +15,13 @@ pub struct Account
     pub date_modified: NaiveDateTime,
 }
 
-#[derive(Insertable, Deserialize)]
+#[derive(Insertable, Debug)]
 #[table_name="t_account"]
-pub struct AccountNew
+pub struct AccountNew<'a>
 {
-    pub name: String,
-    pub description: String,
+    pub name: &'a str,
+    pub description: &'a str,
+    pub is_deleted: bool,
+    pub date_created: NaiveDateTime,
+    pub date_modified: NaiveDateTime,
 }

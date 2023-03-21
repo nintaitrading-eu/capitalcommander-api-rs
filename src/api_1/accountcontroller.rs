@@ -1,5 +1,6 @@
 use actix_web::{web, HttpResponse, Error};
 
+use crate::dto::accountdto::AccountDto;
 use crate::repositories::accountrepository;
 use crate::connection::Pool;
 
@@ -22,9 +23,14 @@ pub async fn get_account_by_id(
        .map_err(|_| HttpResponse::InternalServerError())?)
 }
 
-pub async fn add_account() -> HttpResponse
+pub async fn add_account(
+    db: web::Data<Pool>,
+    item: web::Json<AccountDto>) -> Result<HttpResponse, Error>
 {
-    HttpResponse::Ok().json("Not implemented yet...")
+    Ok(web::block(move || accountrepository::add_account(db, item))
+       .await
+       .map(|account| HttpResponse::Created().json(account))
+       .map_err(|_| HttpResponse::InternalServerError())?)
 }
 
 pub async fn delete_account() -> HttpResponse
