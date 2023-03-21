@@ -12,9 +12,14 @@ pub async fn get_account_list(db: web::Data<Pool>) -> Result<HttpResponse, Error
 }
 
 
-pub async fn get_account_by_id() -> HttpResponse
+pub async fn get_account_by_id(
+    db: web::Data<Pool>,
+    id: web::Path<i64>) -> Result<HttpResponse, Error>
 {
-    HttpResponse::Ok().json("Not implemented yet...")
+    Ok(web::block(move || accountrepository::get_account_by_id(db, id.into_inner()))
+       .await
+       .map(|account| HttpResponse::Ok().json(account))
+       .map_err(|_| HttpResponse::InternalServerError())?)
 }
 
 pub async fn add_account() -> HttpResponse
