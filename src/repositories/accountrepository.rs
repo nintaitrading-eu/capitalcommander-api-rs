@@ -37,3 +37,10 @@ pub fn add_account(
     let res = insert_into(t_account).values(&new_account).get_result(&conn)?;
     Ok(res)
 }
+
+pub fn delete_account(db: web::Data<Pool>, id: i64) -> Result<usize, diesel::result::Error>
+{
+    let conn = db.get().unwrap();
+    let count = delete(t_account.find(id)).execute(&conn)?;
+    Ok(count)
+}

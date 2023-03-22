@@ -33,7 +33,12 @@ pub async fn add_account(
        .map_err(|_| HttpResponse::InternalServerError())?)
 }
 
-pub async fn delete_account() -> HttpResponse
+pub async fn delete_account(
+    db: web::Data<Pool>,
+    id: web::Path<i64>) -> Result<HttpResponse, Error>
 {
-    HttpResponse::Ok().json("Not implemented yet...")
+    Ok(web::block(move || accountrepository::delete_account(db, id.into_inner()))
+       .await
+       .map(|account| HttpResponse::Ok().json(account))
+       .map_err(|_| HttpResponse::InternalServerError())?)
 }
