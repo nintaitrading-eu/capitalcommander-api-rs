@@ -35,6 +35,7 @@ async fn main() -> std::io::Result<()>
             .route("/account", web::get().to(api_1::accountcontroller::get_account_list))
             .route("/account/{id}", web::get().to(api_1::accountcontroller::get_account_by_id))
             .route("/account", web::post().to(api_1::accountcontroller::add_account))
+            .route("/account/{id}", web::post().to(api_1::accountcontroller::update_account))
             .route("/account/{id}", web::delete().to(api_1::accountcontroller::delete_account))
     })
     .bind("127.0.0.1:8891")?

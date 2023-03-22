@@ -4,7 +4,9 @@ use chrono::NaiveDateTime;
 #[derive(Serialize, Deserialize)]
 pub struct AccountList(pub Vec<Account>);
 
-#[derive(Queryable, Serialize, Deserialize)]
+#[derive(Queryable, Serialize, Deserialize, Identifiable, AsChangeset)]
+#[primary_key(account_id)]
+#[table_name="t_account"]
 pub struct Account
 {
     pub account_id: i64,

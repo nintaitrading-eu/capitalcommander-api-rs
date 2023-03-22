@@ -33,6 +33,17 @@ pub async fn add_account(
        .map_err(|_| HttpResponse::InternalServerError())?)
 }
 
+pub async fn update_account(
+    db: web::Data<Pool>,
+    id: web::Path<i64>,
+    item: web::Json<AccountDto>) -> Result<HttpResponse, Error>
+{
+    Ok(web::block(move || accountrepository::update_account(db, id.into_inner(), item))
+       .await
+       .map(|account| HttpResponse::Ok().json(account))
+       .map_err(|_| HttpResponse::InternalServerError())?)
+}
+
 pub async fn delete_account(
     db: web::Data<Pool>,
     id: web::Path<i64>) -> Result<HttpResponse, Error>
