@@ -1,5 +1,6 @@
 pub mod schema;
 pub mod connection;
+pub mod errors;
 pub mod dto;
 pub mod models;
 pub mod repositories;
@@ -18,7 +19,7 @@ extern crate actix_web;
 extern crate actix_rt;
 extern crate futures;
 
-use actix_web::{dev::ServiceRequest, web, App, Error, HttpServer};
+use actix_web::{web, App, HttpServer};
 use crate::connection as dbconn;
 
 #[actix_rt::main]
