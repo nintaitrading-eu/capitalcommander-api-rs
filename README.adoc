@@ -5,3 +5,7 @@
 === Posting
 
 curl http://127.0.0.1:8891/account -H "Content-Type: application/json" -d '{"name": "test", "description": "This is a test"}'
+
+=== Deleting
+
+curl -X DELETE http://127.0.0.1:8891/account/<id>
