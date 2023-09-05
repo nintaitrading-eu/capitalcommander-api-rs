@@ -38,6 +38,11 @@ async fn main() -> std::io::Result<()>
             .route("/account", web::post().to(api_1::accountcontroller::add_account))
             .route("/account/{id}", web::post().to(api_1::accountcontroller::update_account))
             .route("/account/{id}", web::delete().to(api_1::accountcontroller::delete_account))
+            .route("/trade", web::get().to(api_1::tradecontroller::get_trade_list))
+            .route("/trade/{id}", web::get().to(api_1::tradecontroller::get_trade_by_id))
+            .route("/trade", web::post().to(api_1::tradecontroller::add_trade))
+            .route("/trade/{id}", web::post().to(api_1::tradecontroller::update_trade))
+            .route("/trade/{id}", web::delete().to(api_1::tradecontroller::delete_trade))
     })
     .bind("127.0.0.1:8891")?
     .run()

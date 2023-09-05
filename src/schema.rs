@@ -235,7 +235,7 @@ table! {
         date_created -> Timestamptz,
         date_modified -> Timestamptz,
     }
-}
+}*/
 
 table! {
     t_trade (trade_id) {
@@ -294,7 +294,7 @@ table! {
     }
 }
 
-table! {
+/*table! {
     t_trade_calculated_hist (trade_calculated_hist_id) {
         trade_calculated_hist_id -> Int8,
         trade_calculated_id -> Int8,
