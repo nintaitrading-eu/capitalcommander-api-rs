@@ -1,11 +1,11 @@
 CREATE TABLE T_TRADE
 (
-        trade_id bigserial not null,
-        trade_calculated_id bigserial not null,
-        product_id bigserial not null,
-        pool_id bigserial not null,
-        trade_cost_id bigserial not null,
-        trade_drawdown_id bigserial not null,
+    trade_id bigserial not null,
+    trade_calculated_id bigserial not null,
+    product_id bigserial not null,
+    pool_id bigserial not null,
+    trade_cost_id bigserial not null,
+    trade_drawdown_id bigserial not null,
     date_buy timestamp with time zone,
     year_buy int,
     month_buy int,
